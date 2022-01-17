@@ -1,0 +1,188 @@
+@font-face {
+    font-family: 'JS-SB';
+    src: url('fonts/JosefinSans-SemiBold.eot');
+    src: url('fonts/JosefinSans-SemiBold.eot?#iefix') format('embedded-opentype'), url('fonts/JosefinSans-SemiBold.woff2') format('woff2'), url('fonts/JosefinSans-SemiBold.woff') format('woff'), url('fonts/JosefinSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'JS-L';
+    src: url('fonts/JosefinSans-Light.eot');
+    src: url('fonts/JosefinSans-Light.eot?#iefix') format('embedded-opentype'), url('fonts/JosefinSans-Light.woff2') format('woff2'), url('fonts/JosefinSans-Light.woff') format('woff'), url('fonts/JosefinSans-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'JS-R';
+    src: url('fonts/JosefinSans-Regular.eot');
+    src: url('fonts/JosefinSans-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/JosefinSans-Regular.woff2') format('woff2'), url('fonts/JosefinSans-Regular.woff') format('woff'), url('fonts/JosefinSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+:root {
+    --desaturated-red: hsl(0, 36%, 70%);
+    --soft-red: hsl(0, 93%, 68%);
+    --dark-grayish-red: hsl(0, 6%, 24%);
+    --linear-1: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+    --linear-2: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: url(images/bg-pattern-desktop.svg) no-repeat;
+    max-height: 100vh;
+}
+
+main {
+    display: grid;
+    column-gap: 2rem;
+    grid-template-areas: "logo aside""article aside";
+}
+
+.logo {
+    grid-area: logo;
+    padding: 3rem 14.5rem 0 8rem;
+}
+
+aside {
+    grid-area: aside;
+}
+
+h1 {
+    font-family: "JS-SB";
+    text-transform: uppercase;
+    font-size: 3rem;
+    letter-spacing: .75rem;
+    margin: 5rem 0 .5rem;
+    color: var(--dark-grayish-red);
+}
+
+span {
+    color: var(--desaturated-red);
+    font-family: "JS-L";
+    font-weight: 100;
+}
+
+p {
+    color: var(--desaturated-red);
+    font-family: 'JS-R';
+    margin-bottom: 2.5rem;
+}
+
+.img-mobile {
+    display: none;
+}
+
+.img-desktop {
+    max-height: 100vh;
+    max-width: 50vw;
+}
+
+article {
+    grid-area: article;
+    display: flex;
+    flex-direction: column;
+    padding: 0 14.5rem 3rem 8rem;
+}
+
+form {
+    position: relative;
+}
+
+input {
+    height: 2.5rem;
+    border-radius: 2rem;
+    width: 100%;
+    padding: 0 1rem;
+    border: var(--desaturated-red) 1px solid;
+    font-family: "JS-SB";
+    color: var(--dark-grayish-red);
+}
+
+input::placeholder {
+    font-family: "JS-L";
+    color: var(--desaturated-red);
+}
+
+button {
+    height: 2.5rem;
+    width: 5rem;
+    border-radius: 2rem;
+    box-shadow: inset -2.5px -2.5px 5px hsl(5, 55%, 55%, .75), 0 5px 10px hsl(5, 55%, 65%, .5), inset 2.5px 2.5px 5px hsl(5, 55%, 85%, .9);
+    border: none;
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    background-color: hsl(5, 55%, 65%);
+    cursor: pointer;
+}
+
+button img {
+    margin: 0 auto;
+    width: .5rem;
+}
+
+.validity {
+    color: hsl(0, 100%, 50%, .75);
+    margin-left: 1rem;
+    font-size: .75rem;
+    font-family: "JS-SB";
+}
+
+input:focus {
+    border: var(--desaturated-red) 1px solid;
+    outline: none;
+}
+
+input:invalid {
+    border: 2px solid hsl(0, 100%, 50%, .75);
+}
+
+input:invalid+.validity::before {
+    content: url(images/icon-error.svg);
+    position: absolute;
+    right: 4.5rem;
+    top: .5rem;
+    color: red;
+}
+
+button:hover,
+button:focus {
+    background-color: hsl(5, 55%, 85%);
+    box-shadow: 0 10px 15px hsl(5, 55%, 55%, .5);
+    outline: none;
+}
+
+@media screen and (max-width: 745px) {
+    .img-desktop {
+        display: none;
+    }
+    .img-mobile {
+        display: block;
+        width: 100vw;
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+    .logo {
+        padding: 2rem;
+    }
+    article {
+        order: 2;
+        padding: 0 2rem 2rem;
+        text-align: center;
+    }
+    aside {
+        order: 1;
+    }
+    button {
+        width: 3.5rem;
+    }
+}
